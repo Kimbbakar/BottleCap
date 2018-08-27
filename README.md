@@ -29,42 +29,42 @@
 <h3 align = "center">Grammer</h3>
 
 ~~~
-PROG: STMTS	
+PROG:  STMTS	
 
 STMTS:					   
-	| STMT T_NEWLINE STMTS 
-	| T_NEWLINE STMTS
-	| STMT 					
+     | STMT T_NEWLINE STMTS 
+     | T_NEWLINE STMTS
+     | STMT 					
 ;
 
-STMT: EXPR
-	| PRINT EXPR			 
-	| ASSIGN T_ID TO EXPR 	 
+STMT:  EXPR
+     | PRINT EXPR			 
+     | ASSIGN T_ID TO EXPR 	 
 ;
 
-EXPR: ADD EXPR WITH EXPR 	 
-	| SUB EXPR FROM EXPR 	 
-	| MUL EXPR BY EXPR 		 
-	| DIV EXPR BY EXPR 		 	
-	| RPN					 
-	| TERM 					 
+EXPR:  ADD EXPR WITH EXPR 	 
+     | SUB EXPR FROM EXPR 	 
+     | MUL EXPR BY EXPR 		 
+     | DIV EXPR BY EXPR 		 	
+     | RPN					 
+     | TERM 					 
 ;
 
-RPN:  TERM RPN				 
-	| OP RPN				 
-	| OP					 
+RPN:   TERM RPN				 
+     | OP RPN				 
+     | OP					 
 ;
  
 
-TERM: T_INT					 
-	| T_ID 					 
+TERM:  T_INT					 
+     | T_ID 					 
 ;
 
-OP:   T_PLUS				 
-    | T_MINUS				 
-    | T_MULTIPLY			 
-    | T_DIVIDE				 
-    | T_MOD					 
+OP:    T_PLUS				 
+     | T_MINUS				 
+     | T_MULTIPLY			 
+     | T_DIVIDE				 
+     | T_MOD					 
 ;
 
 ~~~
