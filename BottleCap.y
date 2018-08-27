@@ -7,6 +7,8 @@ extern int yylex();
 extern int yyparse();
 extern FILE* yyin;
 void yyerror(const char* s); 
+void PutInStack(int val);
+int stack[10003],idx = 10001;
 %}
 
 %union {
@@ -16,10 +18,10 @@ void yyerror(const char* s);
 
 
 
-%token PRINT T_NEWLINE ASSIGN ADD TO
+%token PRINT T_NEWLINE ASSIGN ADD TO WITH
 %token<INT> T_INT 
 %token<str> T_ID
-%type<INT> TERM RPN
+%type<INT> TERM RPN EXPR
 
 
 %left T_MINUS 
@@ -32,8 +34,7 @@ void yyerror(const char* s);
 %start PROG
 
 %%
-PROG: STMTS
-	
+PROG: STMTS	
 ;
 
 STMTS:						{ printf("Program End\n"); exit(0) ;}
@@ -41,18 +42,32 @@ STMTS:						{ printf("Program End\n"); exit(0) ;}
 	| T_NEWLINE STMTS
 ;
  
-STMT: PRINT TERM			{printf("%d\n",$2);}
-
+STMT: PRINT EXPR			{printf("%d\n",$2);}
+	| EXPR
 ;
 
-EXPR: ADD RPN with RPN
+EXPR: ADD EXPR WITH EXPR 	{$$ = $2 + $4;}
+	| RPN					{$$ = $1;}
 ;
 
-RPN:
+RPN:  VALUE  				{$$=stack[idx++];}
+	| VALUE RPN				{$$=$2;}
+	| OP RPN				{$$=$2;}
+	| OP					{$$=stack[idx++];}
 ;
+
+VALUE: TERM					{PutInStack($1);}
+;
+
 TERM: T_INT					{$$=$1;}
 ;
 
+OP:   T_PLUS				{ if(10001-idx>=2){stack[idx+1] =stack[idx+1] + stack[idx];idx++; } else{yyerror("Wrong Expression!");}  }
+    | T_MINUS				{ if(10001-idx>=2){stack[idx+1] =stack[idx+1] - stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
+    | T_MULTIPLY			{ if(10001-idx>=2){stack[idx+1] =stack[idx+1] * stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
+    | T_DIVIDE				{ if(10001-idx>=2 || stack[idx] ==0 ){stack[idx+1] =stack[idx+1] / stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
+    | T_MOD				{ if(10001-idx>=2 || stack[idx] ==0 ){stack[idx+1] =stack[idx+1] % stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
+;
 
 %%
 int main() {
@@ -67,8 +82,10 @@ void yyerror(const char* s) {
 	exit(1);
 }
 
-int stack[10003],idx = 0;
 
 
+void PutInStack(int val){
+	stack[--idx] = val;
+}
 
  

@@ -21,6 +21,10 @@
 "/"                     {return T_DIVIDE;}
 "Print"					{return PRINT;}
 "%"                     {return T_MOD;}
+"Add"					{return ADD;}
+"Assign"				{return ASSIGN;}
+"wo"					{return TO;}
+"with"					{return WITH;}
 \n                      {return T_NEWLINE;}
 [a-zA-Z][a-zA-Z0-9]*    {strcpy(yylval.str , yytext) ;return T_ID;}
 .						{yyerror("Invalid Syntex!") ;}
