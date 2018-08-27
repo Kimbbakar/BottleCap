@@ -1,4 +1,4 @@
-<h1 align = "center">Flex And Bison</h1>
+<h1 align = "center">BottleCap</h1>
 
 
 <h3 align = "center">Token and Regular Expression</h3>
