@@ -75,6 +75,7 @@ OP:   T_PLUS
 flex BottleCap.l
 bison -dyv BottleCap.y
 gcc lex.yy.c y.tab.c -o BottleCap.exe
+BottleCap.exe < sample.txt
 ```
 
 <h3 align = "center">Sample Program</h3>
