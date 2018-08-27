@@ -23,7 +23,12 @@
 "%"                     {return T_MOD;}
 "Add"					{return ADD;}
 "Assign"				{return ASSIGN;}
-"wo"					{return TO;}
+"Subtract"				{return SUB;}
+"Multiply"				{return MUL;}
+"Divide"				{return DIV;}
+"by"					{return BY;}
+"from"					{return FROM;}
+"to"					{return TO;}
 "with"					{return WITH;}
 \n                      {return T_NEWLINE;}
 [a-zA-Z][a-zA-Z0-9]*    {strcpy(yylval.str , yytext) ;return T_ID;}
