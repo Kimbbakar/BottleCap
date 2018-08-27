@@ -26,7 +26,7 @@
 - .                           {yyerror("Invalid Syntex!") ;}
 ~~~
 
-<h3 align = "center">Grammer</h3>
+## <h3 align = "center">Grammer</h3>
 
 ~~~
 PROG:  STMTS	
@@ -69,7 +69,7 @@ OP:    T_PLUS
 
 ~~~
 
-<h3 align = "center">Compile Process</h3>
+## <h3 align = "center">Compile Process</h3>
 
 ```
 flex BottleCap.l
@@ -78,7 +78,7 @@ gcc lex.yy.c y.tab.c -o BottleCap.exe
 BottleCap.exe < sample.txt
 ```
 
-<h3 align = "center">Sample Program</h3>
+## <h3 align = "center">Sample Program</h3>
 <b>Input:</b>
 
 ```
@@ -100,7 +100,7 @@ Print 10 a b * * 2 +
 Program End
 ```
 
-<h3 align = "center">Limitation </h3>
+## <h3 align = "center">Limitation </h3>
 
 - It only takes <i>Reverse Polish Notation</i>  expression.
 - Arithmetic operations only allowed for integer.
