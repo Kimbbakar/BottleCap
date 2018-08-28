@@ -60,7 +60,7 @@ EXPR: ADD EXPR WITH EXPR 	{$$ = $2 + $4;}
 
 RPN:  VALUE RPN				{$$=$2;}
 	| OP RPN				{$$=$2;}
-	| OP					{$$=stack[idx++];}
+	| OP					{if(idx==10000) $$=stack[idx++];else yyerror("Wrong Expression!");}
 ;
 
 VALUE: TERM					{PutInStack($1);}
@@ -73,8 +73,8 @@ TERM: T_INT					{$$=$1;}
 OP:   T_PLUS				{ if(10001-idx>=2){stack[idx+1] =stack[idx+1] + stack[idx];idx++; } else{yyerror("Wrong Expression!");}  }
     | T_MINUS				{ if(10001-idx>=2){stack[idx+1] =stack[idx+1] - stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
     | T_MULTIPLY			{ if(10001-idx>=2){stack[idx+1] =stack[idx+1] * stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
-    | T_DIVIDE				{ if(10001-idx>=2 || stack[idx] ==0 ){stack[idx+1] =stack[idx+1] / stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
-    | T_MOD					{ if(10001-idx>=2 || stack[idx] ==0 ){stack[idx+1] =stack[idx+1] % stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
+    | T_DIVIDE				{ if(10001-idx>=2 && stack[idx] !=0 ){stack[idx+1] =stack[idx+1] / stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
+    | T_MOD					{ if(10001-idx>=2 && stack[idx] !=0 ){stack[idx+1] =stack[idx+1] % stack[idx];idx++; } else{yyerror("Wrong Expression!");}}
 ;
 
 %%
