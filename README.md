@@ -1,3 +1,34 @@
+## <h3 align = "center">Sample Program</h3>
+<b>Input:</b>
+
+```
+Assign a to 10
+Assign b to Add a a * with a a +
+Print b
+Assign b to 10
+Print b
+Print Divide a by b
+Print 10 a b * * 2 +
+```
+
+<b>Output:</b>
+```
+120
+10
+1
+1002
+Program End
+```
+
+## <h3 align = "center">Compile Process</h3>
+
+```
+flex BottleCap.l
+bison -dyv BottleCap.y
+gcc lex.yy.c y.tab.c -o BottleCap.exe
+BottleCap.exe < sample.txt
+```
+
 <h1 align = "center">BottleCap</h1>
 
 
@@ -69,36 +100,8 @@ OP:    T_PLUS
 
 ~~~
 
-## <h3 align = "center">Compile Process</h3>
 
-```
-flex BottleCap.l
-bison -dyv BottleCap.y
-gcc lex.yy.c y.tab.c -o BottleCap.exe
-BottleCap.exe < sample.txt
-```
 
-## <h3 align = "center">Sample Program</h3>
-<b>Input:</b>
-
-```
-Assign a to 10
-Assign b to Add a a * with a a +
-Print b
-Assign b to 10
-Print b
-Print Divide a by b
-Print 10 a b * * 2 +
-```
-
-<b>Output:</b>
-```
-120
-10
-1
-1002
-Program End
-```
 
 ## <h3 align = "center">Limitation </h3>
 
