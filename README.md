@@ -1,4 +1,8 @@
-## <h3 align = "center">Sample Program</h3>
+
+<h1 align = "center">BottleCap</h1>
+
+<h3 align = "center">Sample Program</h3>
+
 <b>Input:</b>
 
 ```
@@ -29,10 +33,7 @@ gcc lex.yy.c y.tab.c -o BottleCap.exe
 BottleCap.exe < sample.txt
 ```
 
-<h1 align = "center">BottleCap</h1>
-
-
-<h3 align = "center">Token and Regular Expression</h3>
+## <h3 align = "center">Token and Regular Expression</h3>
 
 ~~~
 - [ \t]                       ; // ignore all whitespace
@@ -99,8 +100,6 @@ OP:    T_PLUS
 ;
 
 ~~~
-
-
 
 
 ## <h3 align = "center">Limitation </h3>
